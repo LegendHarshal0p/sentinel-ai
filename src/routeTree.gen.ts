@@ -15,8 +15,10 @@ import { Route as DependenciesRouteImport } from './routes/dependencies'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RemediationRouteImport } from './routes/remediation'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as RepositoriesRouteImport } from './routes/repositories'
 import { Route as SbomRouteImport } from './routes/sbom'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as VulnerabilitiesRouteImport } from './routes/vulnerabilities'
 
 const IndexRoute = IndexRouteImport.update({
@@ -49,6 +51,11 @@ const RemediationRoute = RemediationRouteImport.update({
   path: '/remediation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RepositoriesRoute = RepositoriesRouteImport.update({
   id: '/repositories',
   path: '/repositories',
@@ -57,6 +64,11 @@ const RepositoriesRoute = RepositoriesRouteImport.update({
 const SbomRoute = SbomRouteImport.update({
   id: '/sbom',
   path: '/sbom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VulnerabilitiesRoute = VulnerabilitiesRouteImport.update({
@@ -72,8 +84,10 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/login': typeof LoginRoute
   '/remediation': typeof RemediationRoute
+  '/reports': typeof ReportsRoute
   '/repositories': typeof RepositoriesRoute
   '/sbom': typeof SbomRoute
+  '/settings': typeof SettingsRoute
   '/vulnerabilities': typeof VulnerabilitiesRoute
 }
 export interface FileRoutesByTo {
@@ -83,8 +97,10 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/login': typeof LoginRoute
   '/remediation': typeof RemediationRoute
+  '/reports': typeof ReportsRoute
   '/repositories': typeof RepositoriesRoute
   '/sbom': typeof SbomRoute
+  '/settings': typeof SettingsRoute
   '/vulnerabilities': typeof VulnerabilitiesRoute
 }
 export interface FileRoutesById {
@@ -95,8 +111,10 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/login': typeof LoginRoute
   '/remediation': typeof RemediationRoute
+  '/reports': typeof ReportsRoute
   '/repositories': typeof RepositoriesRoute
   '/sbom': typeof SbomRoute
+  '/settings': typeof SettingsRoute
   '/vulnerabilities': typeof VulnerabilitiesRoute
 }
 export interface FileRouteTypes {
@@ -108,8 +126,10 @@ export interface FileRouteTypes {
     | '/insights'
     | '/login'
     | '/remediation'
+    | '/reports'
     | '/repositories'
     | '/sbom'
+    | '/settings'
     | '/vulnerabilities'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,8 +139,10 @@ export interface FileRouteTypes {
     | '/insights'
     | '/login'
     | '/remediation'
+    | '/reports'
     | '/repositories'
     | '/sbom'
+    | '/settings'
     | '/vulnerabilities'
   id:
     | '__root__'
@@ -130,8 +152,10 @@ export interface FileRouteTypes {
     | '/insights'
     | '/login'
     | '/remediation'
+    | '/reports'
     | '/repositories'
     | '/sbom'
+    | '/settings'
     | '/vulnerabilities'
   fileRoutesById: FileRoutesById
 }
@@ -142,8 +166,10 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   LoginRoute: typeof LoginRoute
   RemediationRoute: typeof RemediationRoute
+  ReportsRoute: typeof ReportsRoute
   RepositoriesRoute: typeof RepositoriesRoute
   SbomRoute: typeof SbomRoute
+  SettingsRoute: typeof SettingsRoute
   VulnerabilitiesRoute: typeof VulnerabilitiesRoute
 }
 
@@ -191,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RemediationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/repositories': {
       id: '/repositories'
       path: '/repositories'
@@ -203,6 +236,13 @@ declare module '@tanstack/react-router' {
       path: '/sbom'
       fullPath: '/sbom'
       preLoaderRoute: typeof SbomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vulnerabilities': {
@@ -222,8 +262,10 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   LoginRoute: LoginRoute,
   RemediationRoute: RemediationRoute,
+  ReportsRoute: ReportsRoute,
   RepositoriesRoute: RepositoriesRoute,
   SbomRoute: SbomRoute,
+  SettingsRoute: SettingsRoute,
   VulnerabilitiesRoute: VulnerabilitiesRoute,
 }
 export const routeTree = rootRouteImport
