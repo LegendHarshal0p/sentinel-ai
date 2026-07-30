@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DependenciesRouteImport } from './routes/dependencies'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RepositoriesRouteImport } from './routes/repositories'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DependenciesRoute = DependenciesRouteImport.update({
+  id: '/dependencies',
+  path: '/dependencies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -31,30 +37,34 @@ const RepositoriesRoute = RepositoriesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dependencies': typeof DependenciesRoute
   '/login': typeof LoginRoute
   '/repositories': typeof RepositoriesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dependencies': typeof DependenciesRoute
   '/login': typeof LoginRoute
   '/repositories': typeof RepositoriesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dependencies': typeof DependenciesRoute
   '/login': typeof LoginRoute
   '/repositories': typeof RepositoriesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/repositories'
+  fullPaths: '/' | '/dependencies' | '/login' | '/repositories'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/repositories'
-  id: '__root__' | '/' | '/login' | '/repositories'
+  to: '/' | '/dependencies' | '/login' | '/repositories'
+  id: '__root__' | '/' | '/dependencies' | '/login' | '/repositories'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DependenciesRoute: typeof DependenciesRoute
   LoginRoute: typeof LoginRoute
   RepositoriesRoute: typeof RepositoriesRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dependencies': {
+      id: '/dependencies'
+      path: '/dependencies'
+      fullPath: '/dependencies'
+      preLoaderRoute: typeof DependenciesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DependenciesRoute: DependenciesRoute,
   LoginRoute: LoginRoute,
   RepositoriesRoute: RepositoriesRoute,
 }
