@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlastRadiusRouteImport } from './routes/blast-radius'
 import { Route as DependenciesRouteImport } from './routes/dependencies'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RepositoriesRouteImport } from './routes/repositories'
@@ -17,6 +18,11 @@ import { Route as RepositoriesRouteImport } from './routes/repositories'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlastRadiusRoute = BlastRadiusRouteImport.update({
+  id: '/blast-radius',
+  path: '/blast-radius',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DependenciesRoute = DependenciesRouteImport.update({
@@ -37,12 +43,14 @@ const RepositoriesRoute = RepositoriesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blast-radius': typeof BlastRadiusRoute
   '/dependencies': typeof DependenciesRoute
   '/login': typeof LoginRoute
   '/repositories': typeof RepositoriesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blast-radius': typeof BlastRadiusRoute
   '/dependencies': typeof DependenciesRoute
   '/login': typeof LoginRoute
   '/repositories': typeof RepositoriesRoute
@@ -50,20 +58,29 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blast-radius': typeof BlastRadiusRoute
   '/dependencies': typeof DependenciesRoute
   '/login': typeof LoginRoute
   '/repositories': typeof RepositoriesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dependencies' | '/login' | '/repositories'
+  fullPaths:
+    '/' | '/blast-radius' | '/dependencies' | '/login' | '/repositories'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dependencies' | '/login' | '/repositories'
-  id: '__root__' | '/' | '/dependencies' | '/login' | '/repositories'
+  to: '/' | '/blast-radius' | '/dependencies' | '/login' | '/repositories'
+  id:
+    | '__root__'
+    | '/'
+    | '/blast-radius'
+    | '/dependencies'
+    | '/login'
+    | '/repositories'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlastRadiusRoute: typeof BlastRadiusRoute
   DependenciesRoute: typeof DependenciesRoute
   LoginRoute: typeof LoginRoute
   RepositoriesRoute: typeof RepositoriesRoute
@@ -76,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blast-radius': {
+      id: '/blast-radius'
+      path: '/blast-radius'
+      fullPath: '/blast-radius'
+      preLoaderRoute: typeof BlastRadiusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dependencies': {
@@ -104,6 +128,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlastRadiusRoute: BlastRadiusRoute,
   DependenciesRoute: DependenciesRoute,
   LoginRoute: LoginRoute,
   RepositoriesRoute: RepositoriesRoute,
