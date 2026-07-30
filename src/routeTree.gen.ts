@@ -12,8 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlastRadiusRouteImport } from './routes/blast-radius'
 import { Route as DependenciesRouteImport } from './routes/dependencies'
+import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as RemediationRouteImport } from './routes/remediation'
 import { Route as RepositoriesRouteImport } from './routes/repositories'
+import { Route as SbomRouteImport } from './routes/sbom'
+import { Route as VulnerabilitiesRouteImport } from './routes/vulnerabilities'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,9 +34,19 @@ const DependenciesRoute = DependenciesRouteImport.update({
   path: '/dependencies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RemediationRoute = RemediationRouteImport.update({
+  id: '/remediation',
+  path: '/remediation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RepositoriesRoute = RepositoriesRouteImport.update({
@@ -40,50 +54,97 @@ const RepositoriesRoute = RepositoriesRouteImport.update({
   path: '/repositories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SbomRoute = SbomRouteImport.update({
+  id: '/sbom',
+  path: '/sbom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VulnerabilitiesRoute = VulnerabilitiesRouteImport.update({
+  id: '/vulnerabilities',
+  path: '/vulnerabilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blast-radius': typeof BlastRadiusRoute
   '/dependencies': typeof DependenciesRoute
+  '/insights': typeof InsightsRoute
   '/login': typeof LoginRoute
+  '/remediation': typeof RemediationRoute
   '/repositories': typeof RepositoriesRoute
+  '/sbom': typeof SbomRoute
+  '/vulnerabilities': typeof VulnerabilitiesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blast-radius': typeof BlastRadiusRoute
   '/dependencies': typeof DependenciesRoute
+  '/insights': typeof InsightsRoute
   '/login': typeof LoginRoute
+  '/remediation': typeof RemediationRoute
   '/repositories': typeof RepositoriesRoute
+  '/sbom': typeof SbomRoute
+  '/vulnerabilities': typeof VulnerabilitiesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blast-radius': typeof BlastRadiusRoute
   '/dependencies': typeof DependenciesRoute
+  '/insights': typeof InsightsRoute
   '/login': typeof LoginRoute
+  '/remediation': typeof RemediationRoute
   '/repositories': typeof RepositoriesRoute
+  '/sbom': typeof SbomRoute
+  '/vulnerabilities': typeof VulnerabilitiesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/blast-radius' | '/dependencies' | '/login' | '/repositories'
+    | '/'
+    | '/blast-radius'
+    | '/dependencies'
+    | '/insights'
+    | '/login'
+    | '/remediation'
+    | '/repositories'
+    | '/sbom'
+    | '/vulnerabilities'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blast-radius' | '/dependencies' | '/login' | '/repositories'
+  to:
+    | '/'
+    | '/blast-radius'
+    | '/dependencies'
+    | '/insights'
+    | '/login'
+    | '/remediation'
+    | '/repositories'
+    | '/sbom'
+    | '/vulnerabilities'
   id:
     | '__root__'
     | '/'
     | '/blast-radius'
     | '/dependencies'
+    | '/insights'
     | '/login'
+    | '/remediation'
     | '/repositories'
+    | '/sbom'
+    | '/vulnerabilities'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlastRadiusRoute: typeof BlastRadiusRoute
   DependenciesRoute: typeof DependenciesRoute
+  InsightsRoute: typeof InsightsRoute
   LoginRoute: typeof LoginRoute
+  RemediationRoute: typeof RemediationRoute
   RepositoriesRoute: typeof RepositoriesRoute
+  SbomRoute: typeof SbomRoute
+  VulnerabilitiesRoute: typeof VulnerabilitiesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +170,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DependenciesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/remediation': {
+      id: '/remediation'
+      path: '/remediation'
+      fullPath: '/remediation'
+      preLoaderRoute: typeof RemediationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/repositories': {
@@ -123,6 +198,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RepositoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sbom': {
+      id: '/sbom'
+      path: '/sbom'
+      fullPath: '/sbom'
+      preLoaderRoute: typeof SbomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vulnerabilities': {
+      id: '/vulnerabilities'
+      path: '/vulnerabilities'
+      fullPath: '/vulnerabilities'
+      preLoaderRoute: typeof VulnerabilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -130,8 +219,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlastRadiusRoute: BlastRadiusRoute,
   DependenciesRoute: DependenciesRoute,
+  InsightsRoute: InsightsRoute,
   LoginRoute: LoginRoute,
+  RemediationRoute: RemediationRoute,
   RepositoriesRoute: RepositoriesRoute,
+  SbomRoute: SbomRoute,
+  VulnerabilitiesRoute: VulnerabilitiesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
