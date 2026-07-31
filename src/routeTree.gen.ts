@@ -20,6 +20,14 @@ import { Route as RepositoriesRouteImport } from './routes/repositories'
 import { Route as SbomRouteImport } from './routes/sbom'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as VulnerabilitiesRouteImport } from './routes/vulnerabilities'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as AuthSignupRouteImport } from './routes/auth/signup'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminUsersRouteImport } from './routes/admin/users'
+import { Route as AdminDriversRouteImport } from './routes/admin/drivers'
+import { Route as AdminDeliveriesRouteImport } from './routes/admin/deliveries'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
+import { Route as DriverDashboardRouteImport } from './routes/driver/dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +84,46 @@ const VulnerabilitiesRoute = VulnerabilitiesRouteImport.update({
   path: '/vulnerabilities',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignupRoute = AuthSignupRouteImport.update({
+  id: '/auth/signup',
+  path: '/auth/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDriversRoute = AdminDriversRouteImport.update({
+  id: '/admin/drivers',
+  path: '/admin/drivers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDeliveriesRoute = AdminDeliveriesRouteImport.update({
+  id: '/admin/deliveries',
+  path: '/admin/deliveries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DriverDashboardRoute = DriverDashboardRouteImport.update({
+  id: '/driver/dashboard',
+  path: '/driver/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +137,14 @@ export interface FileRoutesByFullPath {
   '/sbom': typeof SbomRoute
   '/settings': typeof SettingsRoute
   '/vulnerabilities': typeof VulnerabilitiesRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/drivers': typeof AdminDriversRoute
+  '/admin/deliveries': typeof AdminDeliveriesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/driver/dashboard': typeof DriverDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +158,14 @@ export interface FileRoutesByTo {
   '/sbom': typeof SbomRoute
   '/settings': typeof SettingsRoute
   '/vulnerabilities': typeof VulnerabilitiesRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/drivers': typeof AdminDriversRoute
+  '/admin/deliveries': typeof AdminDeliveriesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/driver/dashboard': typeof DriverDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +180,14 @@ export interface FileRoutesById {
   '/sbom': typeof SbomRoute
   '/settings': typeof SettingsRoute
   '/vulnerabilities': typeof VulnerabilitiesRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/drivers': typeof AdminDriversRoute
+  '/admin/deliveries': typeof AdminDeliveriesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/driver/dashboard': typeof DriverDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +203,14 @@ export interface FileRouteTypes {
     | '/sbom'
     | '/settings'
     | '/vulnerabilities'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/admin/'
+    | '/admin/users'
+    | '/admin/drivers'
+    | '/admin/deliveries'
+    | '/admin/settings'
+    | '/driver/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +224,14 @@ export interface FileRouteTypes {
     | '/sbom'
     | '/settings'
     | '/vulnerabilities'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/admin/'
+    | '/admin/users'
+    | '/admin/drivers'
+    | '/admin/deliveries'
+    | '/admin/settings'
+    | '/driver/dashboard'
   id:
     | '__root__'
     | '/'
@@ -157,6 +245,14 @@ export interface FileRouteTypes {
     | '/sbom'
     | '/settings'
     | '/vulnerabilities'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/admin/'
+    | '/admin/users'
+    | '/admin/drivers'
+    | '/admin/deliveries'
+    | '/admin/settings'
+    | '/driver/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +267,14 @@ export interface RootRouteChildren {
   SbomRoute: typeof SbomRoute
   SettingsRoute: typeof SettingsRoute
   VulnerabilitiesRoute: typeof VulnerabilitiesRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthSignupRoute: typeof AuthSignupRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminDriversRoute: typeof AdminDriversRoute
+  AdminDeliveriesRoute: typeof AdminDeliveriesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  DriverDashboardRoute: typeof DriverDashboardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +356,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VulnerabilitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/drivers': {
+      id: '/admin/drivers'
+      path: '/admin/drivers'
+      fullPath: '/admin/drivers'
+      preLoaderRoute: typeof AdminDriversRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/deliveries': {
+      id: '/admin/deliveries'
+      path: '/admin/deliveries'
+      fullPath: '/admin/deliveries'
+      preLoaderRoute: typeof AdminDeliveriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/driver/dashboard': {
+      id: '/driver/dashboard'
+      path: '/driver/dashboard'
+      fullPath: '/driver/dashboard'
+      preLoaderRoute: typeof DriverDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +427,14 @@ const rootRouteChildren: RootRouteChildren = {
   SbomRoute: SbomRoute,
   SettingsRoute: SettingsRoute,
   VulnerabilitiesRoute: VulnerabilitiesRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthSignupRoute: AuthSignupRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminDriversRoute: AdminDriversRoute,
+  AdminDeliveriesRoute: AdminDeliveriesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  DriverDashboardRoute: DriverDashboardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
